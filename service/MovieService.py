@@ -30,10 +30,10 @@ class MovieService:
         endpoint = f"/movies/{str(id_new_movie)}"
         return endpoint
 
-    def get_one_movie(self, movie_id) -> object:
+    def get_one_movie(self, movie_id: int):
         return self.movie_dao.get_movie_by_id(movie_id)
 
-    def update_movie_full(self, movie_id):
+    def update_movie_full(self, movie_id: int):
         data = request.json
         movie_to_update = self.get_one_movie(movie_id)
         movie_to_update.title = data.get('title')
@@ -43,7 +43,7 @@ class MovieService:
         movie_to_update.rating = data.get('rating')
         return self.movie_dao.edit_movie(movie_to_update)
 
-    def update_movie_partial(self, movie_id):
+    def update_movie_partial(self, movie_id: int):
         data = request.json
         movie_to_edit = self.get_one_movie(movie_id)
         if 'title' in data:
@@ -58,7 +58,7 @@ class MovieService:
             movie_to_edit.rating = data.get('rating')
         return self.movie_dao.edit_movie(movie_to_edit)
 
-    def delete_one_movie(self, movie_id):
+    def delete_one_movie(self, movie_id: int):
         try:
             return self.movie_dao.delete_movie(movie_id), 204
         except UnmappedInstanceError:

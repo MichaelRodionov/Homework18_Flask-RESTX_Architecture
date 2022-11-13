@@ -25,7 +25,10 @@ class MovieView(Resource):
     @staticmethod
     def get(movie_id):
         """This view return one movie filtered by movie_id by GET request"""
-        return movie_schema.dump(movie_service.get_one_movie(movie_id)), 200
+        movie = movie_service.get_one_movie(movie_id)
+        if not movie:
+            return 'movie not found', 404
+        return movie_schema.dump(movie), 200
 
     @staticmethod
     def put(movie_id):

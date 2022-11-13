@@ -47,4 +47,4 @@ def get_500_error(error):
 
 
 if __name__ == '__main__':
-    application.run()
+    application.run(port=5050)

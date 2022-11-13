@@ -33,11 +33,8 @@ class MovieDAO:
         :param movie_id:
         :return: return movie by movie_id to MovieService
         """
-        try:
-            movie_by_id = self.session.query(Movie).get(movie_id)
-            return movie_by_id
-        except Exception as e:
-            return str(e)
+        movie_by_id = self.session.query(Movie).get(movie_id)
+        return movie_by_id
 
     def add_new_movie(self, new_movie):
         """
